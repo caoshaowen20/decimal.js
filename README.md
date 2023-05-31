@@ -33,7 +33,7 @@ y = +new Decimal(0.3).divide(0.1)        // 3
 x = (0.1+0.2-0.1)*100/5                                                     // 4.000000000000001
 y = +new Decimal(0.1).add(0.2).subtract(0.1).multiply(100).divide(5)       // 4
 ```
-## 示例 6
+## 示例6
 ```javascript
 
 var x = new Decimal(0.1)   
