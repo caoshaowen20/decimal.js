@@ -16,7 +16,7 @@ Decimal.prototype.trans = function (num1, num2) {
   const fnlet = this.format(num1);
   const fnright = this.format(num2);
 
-  if (!fnlet.xsw && !fnright.xsw) return fnlet.org + fnright.org;
+  if (!fnlet.xsw && !fnright.xsw) return { ns1:num1.toString(),ns2:num2.toString(),bs:0 };
 
   const xs1 = fnlet.xsw || '';
   const xs2 = fnright.xsw || '';
@@ -38,22 +38,22 @@ Decimal.prototype.trans = function (num1, num2) {
 
 /**加法 */
 Decimal.prototype.add = function (addnum) {
-  const t = this.trans(this.num, addnum);
-  this.num = (parseInt(t.ns1) + parseInt(t.ns2)) / t.bs;
+  const t = this.trans(this.num, addnum); 
+  this.num = (parseInt(t.ns1) + parseInt(t.ns2)) / (t.bs || 1);
   return this;
 };
 
 /**减法 */
 Decimal.prototype.subtract = function (snum) {
   const t = this.trans(this.num, snum);
-  this.num = (parseInt(t.ns1) - parseInt(t.ns2)) / t.bs;
+  this.num = (parseInt(t.ns1) - parseInt(t.ns2)) / (t.bs || 1);
   return this;
 };
 
 /**乘法 */
 Decimal.prototype.multiply = function (munum) {
   const t = this.trans(this.num, munum);
-  this.num = (parseInt(t.ns1) * parseInt(t.ns2)) / (t.bs * t.bs);
+  this.num = (parseInt(t.ns1) * parseInt(t.ns2)) / ((t.bs * t.bs) || 1);
   return this;
 };
 
