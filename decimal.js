@@ -1,5 +1,8 @@
 function Decimal(num) {
   this.num = +num;
+  if(isNaN(this.num)){
+    this.num = 0;
+  }
 }
 
 Decimal.prototype.format = function (org) {
